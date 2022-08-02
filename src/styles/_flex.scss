@@ -1,0 +1,187 @@
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+) !default;
+
+$displays: block, inline-block, flex, inline-flex, table, inline-table, none;
+
+/*
+  This file generates margins and paddings helper classes according to
+  defined breakpoints.
+
+  I. e.:
+
+  .d-none {
+    display: none;
+  }
+
+  .d-block-lg {
+    display: block;
+  }
+
+  Author: @tiagosatur
+
+*/
+
+@each $breakpoint, $breakpoint-value in ($grid-breakpoints) {
+  @if ($breakpoint-value == 0) {
+    @each $display in $displays {
+      .pr-d-#{$display} {
+        display: #{$display} !important;
+      }
+    }
+  } @else {
+    @media (min-width: $breakpoint-value) {
+      @each $display in $displays {
+        .pr-d-#{$display } {
+          display: #{$display} !important;
+        }
+      }
+    }
+  }
+}
+
+//Flex justify and alignment classes
+@each $breakpoint, $breakpoint-value in ($grid-breakpoints) {
+  @if ($breakpoint-value == 0) {
+    @each $style-prop,
+      $abbrev
+        in (
+          justify-content: pr-justify-content,
+          align-items: pr-align-items,
+          align-self: pr-align-self
+        )
+    {
+      @each $style-value
+        in (start, end, center, space-between, space-around, baseline, stretch)
+      {
+        .#{$abbrev}-#{$style-value} {
+          #{$style-prop}: $style-value !important;
+        }
+      }
+    }
+  } @else {
+    @media (min-width: $breakpoint-value) {
+      @each $style-prop,
+        $abbrev
+          in (
+            justify-content: pr-justify-content,
+            align-items: pr-align-items,
+            align-self: pr-align-self
+          )
+      {
+        @each $style-value
+          in (
+            start,
+            end,
+            center,
+            space-between,
+            space-around,
+            baseline,
+            stretch
+          )
+        {
+          .#{$abbrev}-#{$style-value}-#{$breakpoint} {
+            #{$style-prop}: $style-value !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Flex direction classes
+
+@each $breakpoint, $breakpoint-value in ($grid-breakpoints) {
+  @if ($breakpoint-value == 0) {
+    @each $style-prop, $abbrev in (flex-direction: pr-flex-direction) {
+      @each $style-value
+        in (column, row, column-reverse, row-reverse, inherit, initial, unset)
+      {
+        .#{$abbrev}-#{$style-value} {
+          #{$style-prop}: $style-value !important;
+        }
+      }
+    }
+  } @else {
+    @media (min-width: $breakpoint-value) {
+      @each $style-prop, $abbrev in (flex-direction: pr-flex-direction) {
+        @each $style-value
+          in (column, row, column-reverse, row-reverse, inherit, initial, unset)
+        {
+          .#{$abbrev}-#{$style-value}-#{$breakpoint} {
+            #{$style-prop}: $style-value !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+Flex-wrap classes
+
+Usage:
+  .pr-flex-wrap
+  .pr-flex-wrap-reverse-sm
+*/
+
+@each $breakpoint, $value in ($grid-breakpoints) {
+  @if ($value == 0) {
+    @each $style-prop, $abbrev in (flex-wrap: pr-flex) {
+      @each $style-value in (wrap, wrap-reverse, nowrap, initial, inherit) {
+        .#{$abbrev}-#{$style-value} {
+          #{$style-prop}: $style-value !important;
+        }
+      }
+    }
+  } @else {
+    @media (min-width: $value) {
+      @each $style-prop, $abbrev in (flex-wrap: pr-flex) {
+        @each $style-value in (wrap, wrap-reverse, nowrap, initial, inherit) {
+          .#{$abbrev}-#{$style-value}-#{$breakpoint} {
+            #{$style-prop}: $style-value !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+//  Not working yet
+//
+// @mixin helperClassGenerator($property, $abbrev-parameter, $property-values...) {
+//   @each $breakpoint, $value in ($grid-breakpoints) {
+//     @if($value == 0) {
+//       @each $style-prop, $abbrev in ($property: $abbrev-parameter) {
+//
+//         @each $style-value in ($property-values) {
+//           .#{$abbrev}-#{$style-value} {
+//             #{$style-prop}: $style-value !important;
+//           }
+//         }
+//       }
+//
+//     } @else {
+//
+//       @media(min-width: $value) {
+//
+//         @each $style-prop, $abbrev in ($property: $abbrev-parameter) {
+//
+//           @each $style-value in ($property-values) {
+//             .#{$abbrev}-#{$style-value}-#{$breakpoint} {
+//               #{$style-prop}: $style-value !important;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+//
+//
+// @include helperClassGenerator(flex-wrap, pr-flex-wrap, (wrap, wrap-reverse, nowrap, initial, inherit))
