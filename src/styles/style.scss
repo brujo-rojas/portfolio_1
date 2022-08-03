@@ -1,8 +1,48 @@
-
 @import "../../node_modules/ress/dist/ress.min.css";
 
-@import '_flex.scss';
+@import "_flex.scss";
 
-*{
-  box-shadow: 0px 0px 2px red;
+* {
+  //box-shadow: 0px 0px 2px red;
+}
+
+#app {
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  nav {
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #42b983;
+      }
+    }
+  }
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: space-between;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+    width: 100%;
+  }
 }
