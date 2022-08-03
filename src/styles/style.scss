@@ -11,20 +11,33 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  background-attachment: fixed;
+  background: rgba(16, 18, 19, 1);
+  overflow: hidden;
 
   nav {
     padding: 2em;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    z-index: 2;
+
+    background: rgba(16, 18, 19, 1);
+
+    backdrop-filter: blur(40px);
+    background: rgba(54, 50, 82, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
 
     a {
       font-weight: bold;
-      color: #2c3e50;
+      margin: 0 1em;
+      color: white;
+      text-decoration: none;
 
       &.router-link-exact-active {
         color: #42b983;
@@ -44,5 +57,80 @@
   .spacer {
     flex: 1 1 auto;
     width: 100%;
+  }
+
+  .block--diagonal-grad {
+    background-image: linear-gradient(
+      135deg,
+      rgba(244, 67, 54, 0.1),
+      rgba(230, 81, 0, 0.1),
+      rgba(46, 125, 50, 0.1),
+      rgba(26, 35, 126, 0.1),
+      rgba(49, 27, 146, 0.1),
+      rgba(26, 35, 126, 0.1),
+      rgba(27, 94, 32, 0.1),
+      rgba(46, 125, 50, 0.1),
+      rgba(244, 67, 54, 0.1)
+    );
+    background-size: 300% 300%;
+    animation: diagonalGrad 20s ease infinite;
+  }
+  @keyframes diagonalGrad {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+}
+
+$particleSize: 10em;
+$animationDuration: 150s;
+$amount: 20;
+
+.with-dots {
+  //overflow: hidden;
+  span.dot {
+    width: $particleSize;
+    height: $particleSize;
+    border-radius: $particleSize;
+    backface-visibility: hidden;
+    position: absolute;
+    animation-name: move;
+    animation-duration: $animationDuration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    $colors: (
+      rgba(0, 191, 165, 0.4),
+      rgba(41, 121, 255, 0.6),
+      rgba(41, 121, 255, 0.2),
+      rgba(24, 255, 255, 0.9),
+      rgba(24, 255, 255, 0.4)
+    );
+
+    @for $i from 1 through $amount {
+      &:nth-child(#{$i}) {
+        $blurRadius: (random() + 0.2) * $particleSize * 0.4;
+        $x: if(random() > 0.5, -1, 1);
+
+        color: nth($colors, random(length($colors)));
+        top: random(100) * 1%;
+        left: random(100) * 1%;
+        animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
+        animation-delay: random(($animationDuration + 10s) * 10) / 10 * -1s;
+        transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
+        box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+      }
+    }
+  }
+}
+
+@keyframes move {
+  100% {
+    transform: translate3d(0, 0, 1px) rotate(360deg);
   }
 }
