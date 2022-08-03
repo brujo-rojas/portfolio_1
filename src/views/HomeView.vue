@@ -3,16 +3,39 @@
     <span class="dot" v-for="(p, index) in Array(amountDots)" :key="index">
     </span>
 
-    <div class="container h-100">
+    <div class="container container-full h-100">
       <div class="profile-card" ref="card">
         <h2>
-          Web<br />
-          Dev
+          WEB<br />
+          DEV
         </h2>
         <p>
           Hola, <br />
           Soy <b>Patricio Rojas</b> <br />
-          Desarrollador Web Fullstack, especializado en frontend
+          Desarrollador Web Fullstack, especializado en Frontend
+          <br />
+          Temuco, Chile
+        </p>
+
+        <p class="icons">
+          <span
+            ><a href="https://www.instagram.com/p_rojas_r/" target="_blank"
+              ><i class="fa fa-instagram"></i></a
+          ></span>
+          <span
+            ><a href="https://github.com/brujo-rojas" target="_blank"
+              ><i class="fa fa-github"></i></a
+          ></span>
+          <span
+            ><a href="https://codepen.io/brujo696" target="_blank"
+              ><i class="fa fa-codepen"></i></a
+          ></span>
+          <span
+            ><a
+              href="https://www.linkedin.com/in/patriciorojasr/"
+              target="_blank"
+              ><i class="fa fa-linkedin"></i></a
+          ></span>
         </p>
       </div>
     </div>
@@ -38,23 +61,23 @@ export default {
   background: rgba(26, 28, 32, 1);
   background-size: cover;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   height: 100% !important;
   min-height: 100% !important;
   flex: 1 0 auto;
+  padding: 3em;
 
   .profile-card {
-    min-height: 300px;
     background: red;
-    flex: 1 1 auto;
+    flex: 1 0 100%;
     padding: 4em;
-    margin: 4em;
     text-align: left;
     border-radius: 9px;
 
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: start;
     flex-direction: column;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.4), 0 6px 6px -7px rgba(0, 0, 0, 0.7),
@@ -88,6 +111,12 @@ export default {
       line-height: 1.5em;
       font-weight: normal;
       margin-top: 2.5em;
+    }
+    p.icons {
+      a {
+        color: white;
+        margin-right: 1em;
+      }
     }
   }
 }
