@@ -3,7 +3,7 @@
     <span class="dot" v-for="(p, index) in Array(amountDots)" :key="index">
     </span>
 
-    <div class="container container-full h-100">
+    <div class="container h-100">
       <div class="profile-card" ref="card">
         <h2>
           WEB<br />
@@ -18,10 +18,6 @@
         </p>
 
         <p class="icons">
-          <span
-            ><a href="https://www.instagram.com/p_rojas_r/" target="_blank"
-              ><i class="fa fa-instagram"></i></a
-          ></span>
           <span
             ><a href="https://github.com/brujo-rojas" target="_blank"
               ><i class="fa fa-github"></i></a

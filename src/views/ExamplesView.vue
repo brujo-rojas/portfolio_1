@@ -1,5 +1,5 @@
 <template>
-  <div class="examples-container container container-full">
+  <div class="examples-container container">
     <h1>Ejemplos</h1>
 
     <div class="examples">
@@ -8,12 +8,37 @@
         v-for="(card, index) in cards"
         :key="index"
       >
-        <div @click="card.url && openUrl(card.url)" class="card-example">
+        <div class="card-example">
           <div class="close" @click.stop="deselectCard()"></div>
-          <div class="card-image"></div>
+          <div class="card-image">
+            <img :src="baseUrl + card.image" v-if="card.image" alt="" />
+          </div>
           <div class="card-description">
             <span class="title">{{ card.title }}</span>
             <span class="description">{{ card.description }}</span>
+            <div class="tags">
+              <span class="tag" :key="index" v-for="(tag, index) in card.tags">
+                {{ tag }}
+              </span>
+            </div>
+            <div class="card-actions">
+              <button
+                target="_blank"
+                class="outlined"
+                @click="openUrl(card.github)"
+                v-if="card.github"
+              >
+                Github
+              </button>
+              <button
+                target="_blank"
+                class="outlined"
+                @click="openUrl(card.demo)"
+                v-if="card.demo"
+              >
+                DEMO
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -22,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 export default {
   setup() {
@@ -32,39 +57,46 @@ export default {
         id: 1,
         title: "Marmota",
         url: "https://marmota-vue.netlify.app/components/table-basic.html",
-        description: "a Description lorem lorem lorem lorem",
-      },
-      {
-        id: 2,
-        title: "Youtube Collection",
-        url: "https://yt-collection.netlify.app/videos",
-        description: "a Description lorem lorem lorem lorem",
-      },
-      {
-        id: 3,
-        title: "Draw Tools",
-        url: "https://drawtool.netlify.app/",
-        description: "a Description lorem lorem lorem lorem",
+        image: "/img/ss/marmota.png",
+        description: "Extension NPM, Tabla de datos con opciones avanzadas",
+        tags: ["npm", "vue", "vuetify"],
+        demo: "https://marmota-vue.netlify.app/components/table-example.html",
+        github: "https://github.com/brujo-rojas/marmota",
       },
       {
         id: 4,
         title: "Macos JS",
         url: "https://macos-web.netlify.app/",
-        description: "a Description lorem lorem lorem lorem",
+        image: "/img/ss/macos.png",
+        description: "Simulador de MacOs hecho en Javascript y scss",
+        tags: ["JS", "CSS 3", "DOM"],
+        github: "https://github.com/brujo-rojas/macOsWeb",
+        demo: "https://macos-web.netlify.app/",
+      },
+      {
+        id: 3,
+        title: "Draw Tools",
+        url: "https://drawtool.netlify.app/",
+        image: "/img/ss/drawtools.png",
+        description:
+          "Herramienta web para dibujo clasico, grillas y edicion de img",
+        tags: ["Vue 3", "CSS 3", "Canvas", "TS"],
+        github: "https://github.com/brujo-rojas/drawtool",
+        demo: "https://drawtool.netlify.app/grid",
       },
       {
         id: 5,
-        title: "a title 5",
-        description: "a Description lorem lorem lorem lorem",
-      },
-      {
-        id: 6,
-        title: "a title 6",
-        description: "a Description lorem lorem lorem lorem",
+        title: "API Mercado de Pociones",
+        image: "/img/ss/laravel.jpg",
+        description:
+          "Demostracion Backend, de api de venta de pociones en Laravel",
+        tags: ["REST", "Laravel 9", "MySql"],
+        github: "https://github.com/brujo-rojas/potionsmart",
       },
     ];
 
     let cardSelected = ref(null);
+    const baseUrl = window.location.origin;
 
     function openUrl(url: string) {
       if (url && window) {
@@ -82,6 +114,8 @@ export default {
       amountDots,
       cards,
       cardSelected,
+      baseUrl,
+
       openUrl,
       deselectCard,
     };
@@ -90,10 +124,12 @@ export default {
 </script>
 
 <style lang="scss">
-.examples-container {
+#app .examples-container.container {
   margin-top: 2em;
   display: flex;
   flex-direction: column !important;
+  align-items: center;
+  justify-content: start;
 
   h1 {
     font-size: 4em;
@@ -110,14 +146,15 @@ export default {
     margin-top: 2em;
 
     .card-example-container {
-      width: 30%;
-      max-width: 30%;
-      min-width: 250px;
-      flex: 1 1 30%;
-      height: 300px;
+      width: 50%;
+      max-width: 50%;
+      min-width: 350px;
+      flex: 1 0 50%;
+      aspect-ratio: 16 / 9;
       display: flex;
       flex-direction: row;
     }
+
     .card-example {
       border-radius: 5px;
       margin: 1em;
@@ -133,7 +170,6 @@ export default {
       position: relative;
       flex-direction: column;
       overflow: hidden;
-      cursor: pointer;
 
       &:not(.card-example-full) {
         &:hover {
@@ -141,14 +177,21 @@ export default {
           box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
             0 24px 38px 3px rgba(0, 0, 0, 0.14),
             0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 0 4px rgba(24, 255, 255, 1) !important;
-          transform: scale(1.05);
+          transform: scale(1.2);
+          z-index: 3;
           border-color: rgba(24, 255, 255, 1);
           .card-description {
-            top: 50%;
+            top: 0%;
+            background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 1) 0%,
+              rgba(0, 0, 0, 0.8) 100%
+            );
+            backdrop-filter: blur(8px);
           }
         }
 
-        &:active {
+        /*&:active {
           background: rgba(0, 131, 143, 0.2);
           box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
             0 12px 17px 2px rgba(0, 0, 0, 0.14),
@@ -158,11 +201,17 @@ export default {
 
           transition: 0.2s all ease;
         }
+        */
       }
 
       .card-image {
-        background: green;
         width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        img {
+          width: 100%;
+        }
       }
 
       .card-description {
@@ -170,22 +219,43 @@ export default {
         top: calc(100% - 3.5em);
         left: 0px;
         width: 100%;
-        height: 50%;
+        height: 100%;
         padding: 1em;
         display: flex;
         flex-direction: column;
         transition: 0.3s all ease;
+        text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5),
+          0px 0px 5px rgba(0, 0, 0, 1);
         background: linear-gradient(
           0deg,
-          rgba(0, 0, 0, 0.5) 0%,
-          rgba(0, 0, 0, 0) 90%
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 0.6) 90%
         );
+        backdrop-filter: blur(2px);
 
         .title {
           font-size: 1.3em;
         }
         .description {
           margin-top: 1em;
+        }
+        .tag {
+          display: inline-block;
+          background: rgba(0, 96, 100, 1);
+          color: white;
+          border-radius: 20px;
+          padding: 2px 1em;
+          margin: 4px 0.5em;
+        }
+        .card-actions {
+          button.outlined {
+            color: white;
+            border-radius: 20px;
+            border: 1px solid white;
+            background: transparent;
+            padding: 4px 1em;
+            margin: 0.5em;
+          }
         }
       }
     }
