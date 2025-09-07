@@ -104,6 +104,12 @@ $particleSize: 25em;
 $animationDuration: 100s;
 $amount: 20;
 
+// Variables CSS para control dinámico
+:root {
+  --particle-speed: #{$animationDuration};
+  --particle-amount: #{$amount};
+}
+
 .with-dots {
   //overflow: hidden;
   span.dot {
@@ -116,17 +122,19 @@ $amount: 20;
     animation-duration: $animationDuration;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    will-change: transform; // Optimización GPU
     $colors: (
-      rgba(0, 191, 165, 0.4),
-      rgba(41, 121, 255, 0.6),
-      rgba(41, 121, 255, 0.2),
-      rgba(24, 255, 255, 0.9),
-      rgba(24, 255, 255, 0.4)
+      rgba(0, 191, 165, 0.3),    // Teal
+      rgba(41, 121, 255, 0.5),   // Blue  
+      rgba(24, 255, 255, 0.7),   // Cyan
+      rgba(147, 51, 234, 0.4),   // Purple
+      rgba(34, 197, 94, 0.3),    // Green
+      rgba(244, 63, 94, 0.3)     // Pink
     );
 
     @for $i from 1 through $amount {
       &:nth-child(#{$i}) {
-        $blurRadius: (random() + 0.2) * $particleSize * 0.4;
+        $blurRadius: (random() + 0.1) * $particleSize * 0.1;
         $x: if(random() > 0.5, -1, 1);
 
         color: nth($colors, random(length($colors)));
@@ -138,11 +146,47 @@ $amount: 20;
         box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
       }
     }
+
+    // Control de accesibilidad
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+  // Control dinámico de velocidad
+  &.slow {
+    --particle-speed: 150s;
+  }
+
+  &.fast {
+    --particle-speed: 50s;
+  }
+}
+
+// Responsiveness
+@media (max-width: 768px) {
+  .with-dots span.dot {
+    $particleSizeMobile: 15em;
+    width: $particleSizeMobile;
+    height: $particleSizeMobile;
+    animation-duration: 60s;
   }
 }
 
 @keyframes move {
-  100% {
-    transform: translate3d(0, 0, 1px) rotate(360deg);
+  0% { 
+    transform: translate3d(0, 0, 1px) rotate(0deg) scale(0.8); 
+  }
+  25% { 
+    transform: translate3d(10vw, -5vh, 1px) rotate(90deg) scale(1.2); 
+  }
+  50% { 
+    transform: translate3d(-5vw, 10vh, 1px) rotate(180deg) scale(0.9); 
+  }
+  75% { 
+    transform: translate3d(-10vw, -8vh, 1px) rotate(270deg) scale(1.1); 
+  }
+  100% { 
+    transform: translate3d(0, 0, 1px) rotate(360deg) scale(0.8); 
   }
 }

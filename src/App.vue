@@ -2,7 +2,7 @@
   <nav class="navbar-glass">
     <div class="nav-container">
       <router-link to="/" class="nav-link">PR</router-link>
-      <router-link to="/skills" class="nav-link">Skills</router-link>
+      <router-link to="/skills" class="nav-link">Herramientas</router-link>
       <router-link to="/examples" class="nav-link">Portfolio</router-link>
     </div>
   </nav>
