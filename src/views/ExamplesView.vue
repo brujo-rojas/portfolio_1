@@ -54,9 +54,23 @@ export default {
     const amountDots = 20;
     const cards = [
       {
-        id: 1,
+        title: "Nuxt counter",
+        image: "/img/ss/nuxtcounter.png",
+        description: "Contador simple hecho en Nuxt 4",
+        tags: ["Nuxt 4", "Vue 3", "vuex", "Netlify"],
+        github: "https://github.com/brujo-rojas/counter-nuxt",
+        demo: "https://projas-counter.netlify.app",
+      },
+      {
+        title: "Irricrops landing page",
+        image: "/img/ss/irricrops.png",
+        description:
+          "Landing page para empresa Irricrops, dedicada al análisis de datos",
+        tags: ["Astro", "React", "SCSS", "Netlify"],
+        demo: "https://irricrops.com/",
+      },
+      {
         title: "Marmota",
-        url: "https://marmota-vue.netlify.app/components/table-basic.html",
         image: "/img/ss/marmota.png",
         description: "Extension NPM, Tabla de datos con opciones avanzadas",
         tags: ["npm", "vue", "vuetify"],
@@ -64,9 +78,7 @@ export default {
         github: "https://github.com/brujo-rojas/marmota",
       },
       {
-        id: 4,
         title: "Macos JS",
-        url: "https://macos-web.netlify.app/",
         image: "/img/ss/macos.png",
         description: "Simulador de MacOs hecho en Javascript y scss",
         tags: ["JS", "CSS 3", "DOM"],
@@ -74,9 +86,7 @@ export default {
         demo: "https://macos-web.netlify.app/",
       },
       {
-        id: 3,
         title: "Draw Tools",
-        url: "https://drawtool.netlify.app/",
         image: "/img/ss/drawtools.png",
         description:
           "Herramienta web para dibujo clásico, grillas y edición de img",
@@ -85,7 +95,6 @@ export default {
         demo: "https://drawtool.netlify.app/grid",
       },
       {
-        id: 5,
         title: "API Mercado de Pociones",
         image: "/img/ss/laravel.jpg",
         description:
