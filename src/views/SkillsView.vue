@@ -1,7 +1,7 @@
 <template>
   <div class="skills-container">
     <div class="inset-container">
-      <h1>Habilidades</h1>
+      <h1>Herramientas y Habilidades</h1>
       <div class="skills-groups">
         <div
           v-for="group in skillGroups"
@@ -345,9 +345,9 @@ export default {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .skills-container {
-    .container {
+    .inset-container {
       h1 {
         font-size: 2rem;
       }
@@ -371,6 +371,11 @@ export default {
             img {
               width: 35px;
               height: 35px;
+              filter: drop-shadow(1px 0 0 rgba(255, 255, 255, 0.9))
+                      drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.9))
+                      drop-shadow(0 1px 0 rgba(255, 255, 255, 0.9))
+                      drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.9));
+              border-radius: 6px;
             }
           }
 
