@@ -1,6 +1,6 @@
 <template>
   <div class="examples-container container">
-    <h1>Ejemplos</h1>
+    <h1>Portafolio</h1>
 
     <div class="examples">
       <div
@@ -79,7 +79,7 @@ export default {
         url: "https://drawtool.netlify.app/",
         image: "/img/ss/drawtools.png",
         description:
-          "Herramienta web para dibujo clasico, grillas y edicion de img",
+          "Herramienta web para dibujo clásico, grillas y edición de img",
         tags: ["Vue 3", "CSS 3", "Canvas", "TS"],
         github: "https://github.com/brujo-rojas/drawtool",
         demo: "https://drawtool.netlify.app/grid",
@@ -89,7 +89,7 @@ export default {
         title: "API Mercado de Pociones",
         image: "/img/ss/laravel.jpg",
         description:
-          "Demostracion Backend, de api de venta de pociones en Laravel",
+          "Demostración Backend, de api de venta de pociones en Laravel",
         tags: ["REST", "Laravel 9", "MySql"],
         github: "https://github.com/brujo-rojas/potionsmart",
       },
@@ -161,10 +161,8 @@ export default {
       height: calc(100% - 2em);
       width: calc(100% - 2em);
       flex: 1 0 auto;
-      box-shadow:
-        0 3px 5px -1px rgba(0, 0, 0, 0.2),
-        0 6px 10px 0 rgba(0, 0, 0, 0.14),
-        0 1px 18px 0 rgba(0, 0, 0, 0.12) !important;
+      box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+        0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12) !important;
       transition: 0.4s all ease;
       background-color: rgba(38, 50, 56, 1);
       border: 1px solid transparent;
@@ -176,11 +174,9 @@ export default {
       &:not(.card-example-full) {
         &:hover {
           background: rgba(0, 131, 143, 0.3);
-          box-shadow:
-            0 11px 15px -7px rgba(0, 0, 0, 0.2),
+          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
             0 24px 38px 3px rgba(0, 0, 0, 0.14),
-            0 9px 46px 8px rgba(0, 0, 0, 0.12),
-            0 0 4px rgba(24, 255, 255, 1) !important;
+            0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 0 4px rgba(24, 255, 255, 1) !important;
           transform: scale(1.2);
           z-index: 3;
           border-color: rgba(24, 255, 255, 1);
@@ -228,8 +224,7 @@ export default {
         display: flex;
         flex-direction: column;
         transition: 0.3s all ease;
-        text-shadow:
-          0px 1px 0px rgba(0, 0, 0, 0.5),
+        text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5),
           0px 0px 5px rgba(0, 0, 0, 1);
         background: linear-gradient(
           0deg,
