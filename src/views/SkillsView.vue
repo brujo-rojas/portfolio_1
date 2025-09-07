@@ -289,7 +289,7 @@ export default {
       }
 
       .skill-item {
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.2);
         border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 12px;
         padding: 1.5rem;
@@ -299,10 +299,16 @@ export default {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
         &:hover {
-          background: rgba(255, 255, 255, 0.6);
+          background: rgba(255, 255, 255, 0.3);
           border-color: rgba(255, 255, 255, 0.5);
           transform: translateY(-5px);
           box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+          .skill-icon img {
+            opacity: 1;
+          }
+          .skill-name {
+            color: rgba(211, 211, 211, 0.9);
+          }
         }
 
         .skill-icon {
@@ -316,13 +322,23 @@ export default {
             width: inherit;
             height: inherit;
             object-fit: contain;
+            opacity: 0.8;
+            filter: drop-shadow(1px 0 0 rgba(255, 255, 255, 0.9))
+              drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.9))
+              drop-shadow(0 1px 0 rgba(255, 255, 255, 0.9))
+              drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.9))
+              drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.9))
+              drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.9))
+              drop-shadow(1px -1px 0 rgba(255, 255, 255, 0.9))
+              drop-shadow(-1px 1px 0 rgba(255, 255, 255, 0.9));
           }
         }
 
         .skill-name {
-          color: rgba(26, 28, 32, 0.9);
-          font-size: 1.1rem;
+          color: rgba(148, 148, 148, 0.9);
+          font-size: 1.25rem;
           font-weight: 600;
+          transition: all 0.3s ease;
         }
       }
     }
