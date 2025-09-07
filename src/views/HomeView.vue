@@ -17,6 +17,13 @@
           Temuco, Chile
         </p>
 
+        <div class="cta-section">
+          <router-link to="/examples" class="cta-button">
+            Ver mis proyectos
+            <i class="fa fa-arrow-right"></i>
+          </router-link>
+        </div>
+
         <p class="social-links">
           <a href="https://github.com/brujo-rojas" target="_blank" class="chip">
             <i class="fa fa-github"></i>
@@ -141,6 +148,42 @@ export default {
       
       @media (max-width: 768px) {
         font-size: 1.5em;
+      }
+    }
+
+    .cta-section {
+      margin: 2em 0;
+      
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+        padding: 1em 2em;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1em;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+          border-color: rgba(255, 255, 255, 0.4);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        i {
+          transition: transform 0.3s ease;
+        }
+        
+        &:hover i {
+          transform: translateX(5px);
+        }
       }
     }
 
