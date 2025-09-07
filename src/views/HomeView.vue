@@ -78,6 +78,21 @@ export default {
     padding: 4em;
     text-align: left;
     border-radius: 9px;
+    
+    // Animación de entrada
+    animation: slideInUp 1s ease-out;
+    opacity: 1;
+    
+    @keyframes slideInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     display: flex;
     justify-content: space-between;
