@@ -6,7 +6,7 @@
     <div class="container h-100">
       <div class="profile-card" ref="card">
         <h2>
-          WEB<br />
+          FRONT<br />
           DEV
         </h2>
         <p>
@@ -17,21 +17,23 @@
           Temuco, Chile
         </p>
 
-        <p class="icons">
-          <span
-            ><a href="https://github.com/brujo-rojas" target="_blank"
-              ><i class="fa fa-github"></i></a
-          ></span>
-          <span
-            ><a href="https://codepen.io/brujo696" target="_blank"
-              ><i class="fa fa-codepen"></i></a
-          ></span>
-          <span
-            ><a
-              href="https://www.linkedin.com/in/patriciorojasr/"
-              target="_blank"
-              ><i class="fa fa-linkedin"></i></a
-          ></span>
+        <p class="social-links">
+          <a href="https://github.com/brujo-rojas" target="_blank" class="chip">
+            <i class="fa fa-github"></i>
+            <span class="platform-name">GitHub</span>
+          </a>
+          <a href="https://codepen.io/brujo696" target="_blank" class="chip">
+            <i class="fa fa-codepen"></i>
+            <span class="platform-name">CodePen</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/patriciorojasr/"
+            target="_blank"
+            class="chip"
+          >
+            <i class="fa fa-linkedin"></i>
+            <span class="platform-name">LinkedIn</span>
+          </a>
         </p>
       </div>
     </div>
@@ -40,7 +42,7 @@
 <script lang="ts">
 export default {
   setup() {
-    let amountDots = 20;
+    const amountDots = 20;
 
     return {
       amountDots,
@@ -64,6 +66,11 @@ export default {
   min-height: 100% !important;
   flex: 1 0 auto;
   padding: 3em;
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 
   .profile-card {
     background: red;
@@ -91,6 +98,7 @@ export default {
       padding: 0 0 0 0.4em;
       display: block;
       position: relative;
+      transition: all 0.3s ease;
       &:after {
         content: "";
         display: block;
@@ -100,18 +108,64 @@ export default {
         left: 0;
         top: 0;
         height: calc(100% - 24px);
+        transition: all 0.3s ease;
+      }
+      @media (max-width: 768px) {
+        font-size: 4em;
+        &:after {
+          height: calc(100% - 12px);
+        }
       }
     }
+
     p {
       font-size: 2em;
       line-height: 1.5em;
       font-weight: normal;
       margin-top: 2.5em;
+      
+      @media (max-width: 768px) {
+        font-size: 1.5em;
+      }
     }
-    p.icons {
-      a {
+
+    p.social-links {
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
+      margin-top: 2.5em;
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.5em;
+        padding: 0.3em 1.2em;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 25px;
         color: white;
-        margin-right: 1em;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        font-size: 0.85em;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+          border-color: rgba(255, 255, 255, 0.5);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        i {
+          font-size: 1.2em;
+          width: 20px;
+          text-align: center;
+        }
+
+        .platform-name {
+          font-weight: 500;
+          letter-spacing: 0.5px;
+        }
       }
     }
   }
